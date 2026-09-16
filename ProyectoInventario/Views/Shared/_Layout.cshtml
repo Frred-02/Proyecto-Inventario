@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Mi aplicación ASP.NETTT....</title>
+  
+    <link href="/Content/Menu.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="custom-navbar">
+        <div class="nav-container">
+            @{
+              
+                string controladorActual = ViewContext.RouteData.Values["controller"].ToString();
+            }
+
+            @if (Session["Usuario"] != null)
+            {
+                <ul class="nav-links">
+
+                
+                    @if (Session["Rol"] != null && Session["Rol"].ToString() == "Almacenero")
+                    {
+                        <li>
+                            @Html.ActionLink("Categorías", "ListaCategoria", "Categoria", null,
+                                new { @class = "nav-item " + (controladorActual == "Categoria" ? "active" : "") })
+                        </li>
+                        <li>
+                            @Html.ActionLink("Productos", "ListaProducto", "Producto", null,
+                                new { @class = "nav-item " + (controladorActual == "Producto" ? "active" : "") })
+                        </li>
+                    }
+
+                 
+                    @if (Session["Rol"] != null && Session["Rol"].ToString() == "Ventas")
+                    {
+                        <li>@Html.ActionLink("Cliente", "ListaCliente", "Cliente", null, new { @class = "nav-item " + (controladorActual == "Cliente" ? "active" : "") })</li>
+                        <li>@Html.ActionLink("Venta", "ListaVenta", "Venta", null, new { @class = "nav-item " + (controladorActual == "Venta" ? "active" : "") })</li>
+                    }
+
+               
+                    @if (Session["Rol"] != null && Session["Rol"].ToString() == "Administrador")
+                    {
+                        <li>
+                            @Html.ActionLink("Categorías", "ListaCategoria", "Categoria", null,
+                                new { @class = "nav-item " + (controladorActual == "Categoria" ? "active" : "") })
+                        </li>
+                        <li>
+                            @Html.ActionLink("Productos", "ListaProducto", "Producto", null,
+                                new { @class = "nav-item " + (controladorActual == "Producto" ? "active" : "") })
+                        </li>
+                        <li>
+                            @Html.ActionLink("Clientes", "ListaCliente", "Cliente", null,
+                                new { @class = "nav-item " + (controladorActual == "Cliente" ? "active" : "") })
+                        </li>
+                        <li>
+                            @Html.ActionLink("Ventas", "ListaVenta", "Venta", null,
+                                new { @class = "nav-item " + (controladorActual == "Venta" ? "active" : "") })
+                        </li>
+                        <li>@Html.ActionLink("Rol", "ListaRol", "Rol", null, new { @class = "nav-item " + (controladorActual == "Rol" ? "active" : "") })</li>
+                        <li>@Html.ActionLink("Usuario", "ListaUsuario", "Usuario", null, new { @class = "nav-item " + (controladorActual == "Usuario" ? "active" : "") })</li>
+                    }
+
+                
+                    <li>
+                        <a href="/Login/CerrarSesion" class="btn-logout" onclick="return confirm('¿Seguro que deseas cerrar sesión?');" style="display: inline-block; padding: 10px 15px;">
+                            <i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión
+                        </a>
+                    </li>
+
+                </ul>
+            }
+        </div>
+    </nav>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year </p>
+        </footer>
+    </div>
+</body>
+</html>

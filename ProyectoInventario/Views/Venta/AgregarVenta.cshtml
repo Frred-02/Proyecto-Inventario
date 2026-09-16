@@ -1,0 +1,87 @@
+﻿
+@{
+    ViewBag.Title = "AgregarVenta";
+}
+<link href="~/Content/style.css?v=1.3" rel="stylesheet" />
+
+
+<div class="section-header">
+    <h2 class="section-title">Registrar Venta</h2>
+    <a href="@Url.Action("ListaVenta", "Venta")" class="btn-nuevo-custom" style="background-color: #6c757d;">
+        <i class="fa-solid fa-arrow-left"></i> Volver al Historial
+    </a>
+</div>
+
+<div style="background: #fff; border: 1px solid #ddd; padding: 15px; border-radius: 6px; margin-bottom: 20px;">
+    @using (Html.BeginForm("BuscaCliente", "Venta", FormMethod.Post))
+    {
+        <label style="font-weight: 600; display: block; margin-bottom: 5px;">Buscar Cliente</label>
+        <div style="display: flex; gap: 10px;">
+            <input type="text" name="NombreCliente" class="form-control" placeholder="Nombre del cliente..." style="max-width: 400px;" required />
+            <button type="submit" class="btn-seleccionar" style="border: none; cursor: pointer;">
+                <i class="fa-solid fa-magnifying-glass"></i> Buscar
+            </button>
+        </div>
+    }
+</div>
+
+
+@if (Model != null)
+{
+    <table class="custom-table" style="margin-bottom: 20px;">
+        <thead>
+            <tr>
+                <th style="width: 80px;">Id</th>
+                <th>Nombre</th>
+                <th style="width: 120px; text-align: center;">Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.IdCliente</td>
+                    <td>@item.NombreCliente</td>
+                    <td style="text-align: center;">
+                        <a href="@Url.Action("AgregarVenta", "Venta", new { idCliente = item.IdCliente })" class="btn-seleccionar">
+                            <i class="fa-solid fa-check"></i> Seleccionar
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<hr />
+
+
+<div style="background: #fff; border: 1px solid #ddd; padding: 20px; border-radius: 6px;">
+    @using (Html.BeginForm("GuardarVenta", "Venta", FormMethod.Post))
+    {
+        <div style="display: flex; gap: 20px; margin-bottom: 15px;">
+            <div style="flex: 1;">
+                <label style="font-weight: 600; display: block; margin-bottom: 5px;">Id Cliente Seleccionado</label>
+                <input type="text"
+                       name="IdCliente"
+                       value="@ViewBag.IdClienteSeleccionado"
+                       readonly
+                       class="form-control"
+                       style="background-color: #f5f5f5;" required />
+            </div>
+
+            <div style="flex: 1;">
+                <label style="font-weight: 600; display: block; margin-bottom: 5px;">Fecha de Registro</label>
+                <input type="date"
+                       name="Fecha"
+                       value="@DateTime.Now.ToString("yyyy-MM-dd")"
+                       class="form-control" required />
+            </div>
+        </div>
+
+        <button type="submit" class="btn-nuevo-custom" style="border: none; cursor: pointer;">
+            <i class="fa-solid fa-floppy-disk"></i> Guardar Venta
+        </button>
+    }
+</div>
+

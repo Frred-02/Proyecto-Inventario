@@ -1,0 +1,331 @@
+﻿
+
+
+/* Estilos Base y Cards */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+    border: 1px solid #e1e4e6;
+}
+
+/* Formulario */
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+}
+
+.btn-agregar {
+    background-color: #2b579a;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+    .btn-agregar:hover {
+        background-color: #1e3d6b;
+    }
+
+/* Buscador */
+.search-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+.search-box {
+    position: relative;
+    width: 200px;
+}
+
+    .search-box input {
+        width: 100%;
+        padding: 6px 10px 6px 30px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .search-box .fa-search {
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #888;
+    }
+
+/* Tabla */
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    .custom-table th, .custom-table td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #e1e4e6;
+    }
+
+    .custom-table th {
+        background-color: #f1f3f5;
+        color: #495057;
+    }
+
+    .custom-table tbody tr:hover {
+        background-color: #f8f9fa;
+    }
+
+/* Acciones (Iconos) */
+.actions-cell {
+    text-align: center;
+    white-space: nowrap;
+}
+
+.btn-action {
+    background: none;
+    border: none;
+    font-size: 16px;
+    margin: 0 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+    .btn-action.edit {
+        color: #2b579a;
+    }
+
+    .btn-action.btn-eliminar {
+        color: #dc3545;
+    }
+
+/* Paginación */
+.pagination-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 15px;
+}
+
+.pagination a {
+    padding: 6px 12px;
+    border: 1px solid #dee2e6;
+    margin-left: -1px;
+    text-decoration: none;
+    color: #333;
+    background-color: #fff;
+}
+
+    .pagination a.active {
+        background-color: #e9ecef;
+        font-weight: bold;
+    }
+
+.pagination .page-nav {
+    background-color: #fff;
+}
+
+/* ///////////////////////*/
+
+
+/* Contenedor principal del formulario en horizontal */
+.form-horizontal {
+    display: flex;
+    align-items: flex-end; /* Alinea perfectamente las cajas y el botón por la base */
+    gap: 20px; /* Espacio uniforme entre cada campo */
+    flex-wrap: wrap; /* Si la pantalla se hace pequeña, se acomodan solos */
+    margin-top: 15px;
+}
+
+/* Bloques individuales que contienen Label + Input/Select */
+.form-group-item {
+    display: flex;
+    flex-direction: column; /* Coloca el texto del Label arriba de su respectiva caja */
+    flex: 1; /* Distribuye el espacio equitativamente */
+    min-width: 220px; /* Evita que se colapsen y se hagan muy pequeños */
+}
+
+    .form-group-item label {
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 6px;
+        color: #333;
+    }
+
+
+
+
+
+
+ 
+/* Diseño unificado para el Dropdown y el Input de texto */
+.form-control-inline {
+    width: 100%;
+    height: 38px; /* Altura exacta e idéntica para ambos componentes */
+    padding: 6px 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #fff;
+}
+
+    .form-control-inline:focus {
+        border-color: #2b579a;
+        outline: none;
+        box-shadow: 0 0 5px rgba(43, 87, 154, 0.2);
+    }
+
+/* Botón estilizado y alineado horizontalmente */
+.btn-agregar-inline {
+    background-color: #2b579a;
+    color: white;
+    border: none;
+    height: 38px; /* Misma altura que las cajas de texto */
+    padding: 0 25px;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+    .btn-agregar-inline:hover {
+        background-color: #1a3a6c;
+    }
+
+
+
+
+
+
+/* Estilos generales y encabezados */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    margin-top: 20px;
+}
+
+.section-title {
+    font-size: 22px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin: 0;
+}
+
+/* Botón Principal (Agregar Venta) */
+.btn-nuevo-custom {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #27ae60;
+    color: #fff !important;
+    padding: 9px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none !important;
+    box-shadow: 0 2px 5px rgba(39, 174, 96, 0.3);
+    transition: all 0.2s ease;
+}
+
+    .btn-nuevo-custom:hover {
+        background-color: #219150;
+        box-shadow: 0 4px 8px rgba(39, 174, 96, 0.4);
+        transform: translateY(-1px);
+    }
+
+/* Botón Seleccionar */
+.btn-seleccionar {
+    background-color: #3498db;
+    color: white !important;
+    padding: 5px 12px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none !important;
+    transition: background 0.2s;
+}
+
+    .btn-seleccionar:hover {
+        background-color: #2980b9;
+    }
+
+/* Botón Ver Detalles */
+.btn-detalles {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background-color: #eef2f7;
+    color: #31708f !important;
+    border: 1px solid #bce8f1;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none !important;
+    transition: all 0.2s ease;
+}
+
+    .btn-detalles:hover {
+        background-color: #d9edf7;
+        color: #245269 !important;
+        border-color: #9acfea;
+    }
+
+/* Botón Anular (Activo) */
+.btn-anular {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background-color: #fff0f0;
+    color: #d9534f !important;
+    border: 1px solid #ebccd1;
+    padding: 5px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none !important;
+    transition: all 0.2s;
+}
+
+    .btn-anular:hover {
+        background-color: #d9534f;
+        color: white !important;
+    }
+
+/* Badge Anulado (Inactivo/Disabled) */
+.badge-anulado {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background-color: #f1f1f1;
+    color: #888;
+    border: 1px solid #ddd;
+    padding: 5px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: not-allowed;
+}

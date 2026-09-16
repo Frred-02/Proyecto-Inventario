@@ -1,0 +1,127 @@
+﻿@model ProyectoInventario.Models.VentaClienteViewModel
+@{
+    ViewBag.Title = "ListaVenta";
+}
+
+<h2>Lista de Clientes</h2>
+
+<link href="~/Content/style.css" rel="stylesheet" />
+
+
+
+<div class="section-header">
+    <h2 class="section-title">Lista de Clientes</h2>
+    <a href="/Venta/AgregarVenta" class="btn-nuevo-custom">
+        <i class="fa-solid fa-plus"></i> Agregar Venta
+    </a>
+</div>
+
+<table class="custom-table">
+    <thead>
+        <tr>
+            <th style="width: 80px;">Id</th>
+            <th>Cliente</th>
+            <th>Apellido</th>
+            <th style="width: 140px; text-align: center;">Acción</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @if (Model != null && Model.Clientes != null && Model.Clientes.Any())
+        {
+            foreach (var item in Model.Clientes)
+            {
+                <tr>
+                    <td>@item.IdCliente</td>
+                    <td>@item.NombreCliente</td>
+                    <td>@item.ApellidoCliente</td>
+                    <td style="text-align: center;">
+                        <a href="@Url.Action("AgregarVenta", "Venta", new { idCliente = item.IdCliente })"
+                           class="btn-seleccionar">
+                            <i class="fa-solid fa-user-check"></i> Seleccionar
+                        </a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="4" style="text-align: center; color: #777; padding: 15px;">
+                    No se encontraron clientes disponibles.
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<br />
+<hr style="border-top: 1px dashed #ccc;" />
+<br />
+
+
+<div class="section-header">
+    <h2 class="section-title">Historial de Ventas</h2>
+</div>
+
+<table class="custom-table">
+    <thead>
+        <tr>
+            <th style="width: 90px;">Id Venta</th>
+            <th>Cliente</th>
+            <th>Apellido</th>
+            <th>Fecha</th>
+            <th>Total</th>
+            <th style="text-align: center;">Acciones</th>
+            <th style="text-align: center; width: 130px;">Estado</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @if (Model != null && Model.Ventas != null && Model.Ventas.Any())
+        {
+            foreach (var item in Model.Ventas)
+            {
+                <tr>
+                    <td><strong>#@item.IdVenta</strong></td>
+                    <td>@item.NombreCliente</td>
+                    <td>@item.ApellidoCliente</td>
+                    <td>@item.Fecha.ToShortDateString()</td>
+                    <td style="font-weight: bold; color: #2e6da4;">
+                        $@item.TotalVenta.ToString("F2")
+                    </td>
+                    <td style="text-align: center;">
+                        <a href="@Url.Action("ListaDetalleVenta", "DetalleVenta", new { idVenta = item.IdVenta })" class="btn-detalles">
+                            <i class="fa-solid fa-list-check"></i>Gestionar Productos
+                        </a>
+                    </td>
+                    <td style="text-align: center;">
+                        @if (item.Estado != "Anulado")
+                        {
+                            <a href="@Url.Action("AnularVenta", "Venta", new { idVenta = item.IdVenta })"
+                               class="btn-anular"
+                               onclick="return confirm('¿Está seguro de anular la Venta #@item.IdVenta?');">
+                                <i class="fa-solid fa-ban"></i> Anular
+                            </a>
+                        }
+                        else
+                        {
+                            <span class="badge-anulado">
+                                <i class="fa-solid fa-xmark"></i> Anulado
+                            </span>
+                        }
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="7" style="text-align: center; color: #777; padding: 15px;">
+                    No se encontraron ventas registradas.
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

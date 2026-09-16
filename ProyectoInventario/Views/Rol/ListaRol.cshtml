@@ -1,0 +1,147 @@
+﻿@model List<ProyectoInventario.Models.Rol>
+@{
+    ViewBag.Title = "ListaRol";
+}
+
+<link href="~/Content/style.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+<h2>Registro Rol</h2>
+<div class="card">
+    <form action="/Rol/AgregarRol" method="post" class="form-horizontal">
+
+
+        <div class="form-group-item">
+            <input type="text" name="NombreRol" class="form-control-inline" placeholder="Ingrese" required />
+        </div>
+
+        <div class="form-group-button">
+
+            <button type="submit" class="btn-agregar-inline">AGREGADO</button>
+        </div>
+
+    </form>
+
+</div>
+
+<div class="card">
+
+    <table class="custom-table">
+
+        <tr>
+            <th>ID</th>
+            <th>Nombre Rol</th>
+            <th>Accion</th>
+
+
+        </tr>
+        @if (Model != null)
+        {
+
+            foreach (var item in Model)
+            {
+
+                <tr>
+                    <td>@item.IdRol</td>
+                    <td>@item.NombreRol</td>
+                    <td class="actions-cell">
+                        <a href="javascript:void(0);"
+                           class="btn-action edit btn-editar"
+                           title="Editar"
+                           data-idrol="@item.IdRol"
+                           data-nombrerol="@item.NombreRol">
+                            <i class="fa-solid fa-pencil"></i>
+
+                        </a>
+                        <a href="/Rol/EliminarRol/@item.IdRol" class="btn-action btn-eliminar" title="Eliminar" onclick="return confirm('Seguro deseas eliminar?');"><i class="fa-solid fa-trash-can"></i></a>
+
+                </tr>
+
+            }
+
+
+        }
+
+    </table>
+
+</div>
+
+
+
+<div class="modal fade" id="modalEditarRol" tabindex="-1" role="dialog" aria-hidden="true" style="display:none; position: fixed; top: 20%; left: 35%; width: 30%; background: white; border: 1px solid #ccc; padding: 20px; box-shadow: 0px 4px 10px rgba(0,0,0,0.3); border-radius: 8px; z-index: 1050;">
+    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 15px;">
+        <h4 style="margin: 0; color: #333;"><i class="fa-solid fa-pencil"></i> Editar Datos Categoria</h4>
+        <button type="button" onclick="cerrarModal()" style="background: none; border: none; font-size: 18px; cursor: pointer;">&times;</button>
+    </div>
+
+    <div>
+     
+        <input type="hidden" id="txtIdCliente" />
+
+        <div style="margin-bottom: 12px;">
+            <label style="display:block; margin-bottom:5px; font-weight:bold;">Nombre:</label>
+            <input type="text" id="txtNombre" style="width: 100%; padding: 6px; border: 1px solid #ccc; border-radius: 4px;" />
+        </div>
+
+    </div>
+
+    <div style="text-align: right; border-top: 1px solid #eee; padding-top: 10px;">
+        <button type="button" onclick="cerrarModal()" style="padding: 6px 12px; background: #999; color: white; border: none; border-radius: 4px; cursor: pointer;">Cancelar</button>
+        <button type="button" id="btnGuardarCambios" style="padding: 6px 12px; background: #0275d8; color: white; border: none; border-radius: 4px; cursor: pointer;">Guardar Cambios</button>
+    </div>
+</div>
+
+
+<div id="modalFondo" style="display:none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.5); z-index: 1040;"></div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+    
+        $(".btn-editar").on("click", function () {
+            var idrol = $(this).data("idrol");
+            var nombrerol = $(this).data("nombrerol");
+
+
+            $("#txtIdCliente").val(idrol);
+            $("#txtNombre").val(nombrerol);
+
+
+        
+            $("#modalEditarRol").show();
+            $("#modalFondo").show();
+        });
+
+        $("#btnGuardarCambios").on("click", function () {
+            var datosRol = {
+                IdRol: $("#txtIdCliente").val(),
+                NombreRol: $("#txtNombre").val(),
+
+            };
+
+            $.ajax({
+                url: '@Url.Action("EditarRol", "Rol")',
+                type: 'POST',
+                data: datosRol,
+                success: function (response) {
+                    if(response) {
+                        cerrarModal();
+                        location.reload(); 
+                    }
+                },
+                error: function () {
+                    alert("Error al guardar las modificaciones.");
+                }
+            });
+        });
+    });
+
+    function cerrarModal() {
+        $("#modalEditarRol").hide();
+        $("#modalFondo").hide();
+    }
+</script>
+
+

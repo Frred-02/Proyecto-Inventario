@@ -1,0 +1,109 @@
+﻿/* Navbar Principal */
+.custom-navbar {
+    background-color: #ffffff; /* Fondo blanco para un look limpio y moderno */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06); /* Sombra suave inferior */
+    padding: 0px 20px;
+    height: 65px;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Separa el logo, los enlaces y el usuario */
+}
+
+/* Marca / Logo */
+.nav-brand {
+    font-size: 20px;
+    font-weight: 700;
+    color: #2b579a;
+    text-decoration: none;
+    margin-right: 30px;
+}
+
+/* Lista de Enlaces */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    flex-grow: 1; /* Alfilea los enlaces para que ocupen el espacio disponible */
+}
+
+/* Items individuales del menú */
+.nav-item {
+    color: #5a6a85;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+    /* Feedback visual al pasar el cursor (Hover) */
+    .nav-item:hover {
+        background-color: #f1f5f9;
+        color: #2b579a;
+    }
+
+    /* Item activo (la página donde está el usuario actualmente) */
+    .nav-item.active {
+        background-color: #e8f0fe;
+        color: #2b579a;
+        font-weight: 600;
+    }
+
+    /* Estilo especial destacado si es Administrador */
+    .nav-item.nav-admin {
+        color: #d9383a;
+        background-color: #fdf2f2;
+    }
+
+        .nav-item.nav-admin:hover {
+            background-color: #fbe5e5;
+        }
+
+/* Zona de Usuario (Derecha) */
+.nav-user-zone {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-welcome {
+    font-size: 14px;
+    color: #4a5568;
+}
+
+/* Botón de Cerrar Sesión */
+.btn-logout {
+    color: #718096;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 6px 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    transition: all 0.2s;
+}
+
+    .btn-logout:hover {
+        background-color: #f7fafc;
+        color: #e53e3e;
+        border-color: #fed7d7;
+    }
+
+/* Ajuste para el cuerpo de la página */
+.body-content {
+    margin-top: 30px;
+    padding: 0 20px;
+}
