@@ -11,5 +11,6 @@ namespace ProyectoInventario.Models
         public string NombreCliente { get; set; }
         public string ApellidoCliente { get; set; }
         public string Telefono { get; set; }
+
     }
 }
